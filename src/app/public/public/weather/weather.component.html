@@ -1,0 +1,77 @@
+<!-- weather.component.html -->
+<div class="container mt-4">
+  <label for="citySelect" class="form-label">Select a City</label>
+  <select
+    id="citySelect"
+    class="form-select"
+    (change)="getWeatherForCity($event)"
+  >
+    <option value="" disabled>Select a city</option>
+    <option *ngFor="let city of cityEntries" [value]="city[0]">{{ city[1] }}</option>
+  </select>
+</div>
+<div class="container mt-4">
+  <!-- City Name -->
+  <h2 class="mb-4 text-center">{{ weatherData?.city }} Weather Report</h2>
+
+  <!-- Current Weather -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">Current Weather</div>
+    <div class="card-body row">
+      <div class="col-md-4">
+        <p><strong>Max Temp:</strong> {{ weatherData?.weather?.current?.temperature?.max?.value }} °C</p>
+        <p><strong>Min Temp:</strong> {{ weatherData?.weather?.current?.temperature?.min?.value }} °C</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Rainfall:</strong> {{ weatherData?.weather?.current?.rainfall }} mm</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Humidity (Morning):</strong> {{ weatherData?.weather?.current?.humidity?.morning }}%</p>
+        <p><strong>Humidity (Evening):</strong> {{ weatherData?.weather?.current?.humidity?.evening }}%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Astronomical Info -->
+  <div class="card mb-4">
+    <div class="card-header bg-secondary text-white">Astronomical Information</div>
+    <div class="card-body row">
+      <div class="col-md-6">
+        <p><strong>Sunrise:</strong> {{ weatherData?.weather?.astronomical?.sunrise }}</p>
+        <p><strong>Sunset:</strong> {{ weatherData?.weather?.astronomical?.sunset }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Moonrise:</strong> {{ weatherData?.weather?.astronomical?.moonrise }}</p>
+        <p><strong>Moonset:</strong> {{ weatherData?.weather?.astronomical?.moonset }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7-Day Forecast -->
+  <div class="card">
+    <div class="card-header bg-success text-white">7-Day Forecast</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="table-light">
+            <tr>
+              <th>Date</th>
+              <th>Min Temp (°C)</th>
+              <th>Max Temp (°C)</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let day of weatherData?.weather?.forecast">
+              <td>{{ day.date }}</td>
+              <td>{{ day.min_temp }}</td>
+              <td>{{ day.max_temp }}</td>
+              <td>{{ day.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

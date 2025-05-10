@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  x_api_key:"sk-live-VQOqeHgWiLtWzuhfZsfzI3swhgu80sVeDbNpXqeW",
+  base_url:"https://weather.indianapi.in/"
+
 };
 
 /*
